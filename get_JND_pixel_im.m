@@ -14,7 +14,7 @@ lab_y_im = lab_im(:,:,1);
 % Run JND_pixel 
 JND_im = JND_pixel(lab_y_im, "Yang");
 
-% Reduce brightness of grayscale image by JND values
+% Reduce brightness of luminance image by JND values
 new_im = lab_y_im - JND_im;
 
 % Update modified L channel
@@ -28,10 +28,21 @@ orig_y = calc_lab_brightness(I2);
 new_y = calc_lab_brightness(rgb_im);
 
 % Display images
-subplot(1, 2, 1);
+subplot(2, 2, 1);
 imshow(I2);
 title("Original Image");
 
-subplot(1, 2, 2);
+subplot(2, 2, 2);
 imshow(rgb_im);
 title("Reduced Brightness Image with JND");
+
+subplot(2, 2, 3);
+diff_lum = lab_y_im - lab_im(:,:,1);
+imshow(uint8(rescale(diff_lum, 0, 255)));
+title("Luminance Channel Difference");
+
+subplot(2, 2, 4);
+diff_im = I2 - rgb_im;
+%imshow(diff_im);
+imshow(uint8(rescale(diff_im, 0, 255)));
+title("RGB Image Difference");
