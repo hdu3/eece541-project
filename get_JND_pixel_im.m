@@ -30,11 +30,11 @@ new_y = calc_lab_brightness(rgb_im);
 % Display images
 subplot(2, 2, 1);
 imshow(I2);
-title("Original Image");
+title("Original Image: Lum " + num2str(orig_y) + "");
 
 subplot(2, 2, 2);
 imshow(rgb_im);
-title("Reduced Brightness Image with JND");
+title("Reduced Brightness Image with JND: Lum " + num2str(new_y) + "");
 
 subplot(2, 2, 3);
 diff_lum = lab_y_im - lab_im(:,:,1);
