@@ -1,0 +1,1 @@
+This is a temporary working directory containing the Java output and dimmed images. This directory is cleared after the final images are produced. 

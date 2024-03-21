@@ -1,0 +1,1 @@
+This is the output directory that will contain the final images with their brightness levels. 
