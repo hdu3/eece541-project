@@ -7,11 +7,10 @@ function Y = get_HF_multiplier(I, max)
 
 %Orig = imresize(Orig, 1/2);
 
-%// Convert to greyscale
-Orig1 = rgb2gray(I);
+%// Convert to lab colour space to filter on luminance channel
+%Orig1 = rgb2gray(I);
 OrigLab1 = rgb2lab(I);
 OrigLum = OrigLab1(:,:,1); 
-% should the filtering be done on greyscale or luminance channel?
 
 % 8x8 block size
 blockSize = [8 8];
@@ -20,8 +19,7 @@ blockSize = [8 8];
 dctFunc = @(block_struct) dct2(block_struct.data);
 
 % Apply DCT to each 8x8 block
-%dctBlocks = blockproc(OrigLum, blockSize, dctFunc);
-dctBlocks = blockproc(Orig1, blockSize, dctFunc);
+dctBlocks = blockproc(OrigLum, blockSize, dctFunc);
 
 % Function handle to apply high pass filter
 highPassFunc = @(block) highPassFilter(block.data);

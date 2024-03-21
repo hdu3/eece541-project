@@ -36,6 +36,8 @@ end
 I=double(I);
 [H,W]=size(I);
 
+% Display team 2024-03-21: Commented out to avoid image size limitations
+%{
 f = max(1,round(min(H,W)/256))
 
 if(f>1)
@@ -45,6 +47,7 @@ if(f>1)
     I=I(1:f:end,1:f:end);
 
 end
+%}
 
 JNDl=zeros(H,W); % JND: Luminance component
 JNDt=zeros(H,W); % JND: Texture component
