@@ -28,18 +28,18 @@ highPassFunc = @(block) highPassFilter(block.data);
 hpfBlocks = blockproc(dctBlocks, blockSize, highPassFunc);
 
 % Scale values to [0, 255]
-rescale_im = rescale(hpfBlocks, 0, 255);
+%rescale_im = rescale(hpfBlocks, 0, 255);
 
 % Convert to uint8
-int_im = uint8(rescale_im);
+%int_im = uint8(rescale_im);
 
 % Generate multiplier matrix
 %Y = rescale(int_im, 1, max);
 Y = rescale(hpfBlocks, 1, max);
 
 %%% LPF to each 8x8 block
-lowPassFunc = @(block) lowPassFilter(block.data);
-lpfBlocks = blockproc(dctBlocks, blockSize, lowPassFunc);
+%lowPassFunc = @(block) lowPassFilter(block.data);
+%lpfBlocks = blockproc(dctBlocks, blockSize, lowPassFunc);
 
 % Display images
 %{

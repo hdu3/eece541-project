@@ -28,10 +28,10 @@ lowPassFunc = @(block) lowPassFilter(block.data);
 lpfBlocks = blockproc(dctBlocks, blockSize, lowPassFunc);
 
 % Scale values to [0, 255]
-rescale_im = rescale(lpfBlocks, 0, 255);
+%rescale_im = rescale(lpfBlocks, 0, 255);
 
 % Convert to uint8
-int_im = uint8(rescale_im);
+%int_im = uint8(rescale_im);
 
 % Generate multiplier matrix
 Y = rescale((100-lpfBlocks), 0, min);
