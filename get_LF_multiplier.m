@@ -21,15 +21,11 @@ dctFunc = @(block_struct) dct2(block_struct.data);
 % Apply DCT to each 8x8 block
 dctBlocks = blockproc(OrigLum, blockSize, dctFunc);
 
-%%% LPF to each 8x8 block
+% Function handle to apply low pass filter
 lowPassFunc = @(block) lowPassFilter(block.data);
+
+% Apply LPF to each 8x8 block
 lpfBlocks = blockproc(dctBlocks, blockSize, lowPassFunc);
-
-% Function handle to apply high pass filter
-highPassFunc = @(block) highPassFilter(block.data);
-
-% Apply HPF to each 8x8 block
-hpfBlocks = blockproc(dctBlocks, blockSize, highPassFunc);
 
 % Scale values to [0, 255]
 rescale_im = rescale(lpfBlocks, 0, 255);
@@ -38,10 +34,10 @@ rescale_im = rescale(lpfBlocks, 0, 255);
 int_im = uint8(rescale_im);
 
 % Generate multiplier matrix
+Y = rescale((100-lpfBlocks), 0, min);
 %Y = rescale(int_im, 1, max);
-Y = rescale(lpfBlocks, 0, min);
-
-
+%Y = rescale(imcomplement(lpfBlocks), 0, min);
+%Y = rescale(lpfBlocks, 0, min);
 
 % Display images
 %{
